@@ -1,0 +1,23 @@
+.basket {
+  position: fixed;
+  right: 10%;
+  top: 5%;
+  z-index: 30;
+}
+.basket__btn {
+  position: relative;
+}
+.basket__quantity {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  pointer-events: none;
+}
+
+@media (max-width: 1440px) {
+  .basket {
+    position: fixed;
+    top: auto;
+    bottom: 30px;
+  }
+}
