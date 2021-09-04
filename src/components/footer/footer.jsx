@@ -15,6 +15,7 @@ function Footer() {
             className='column'
             href='https://github.com/dkihada/react-shop-app'
             target='_blank'
+            rel='noreferrer'
           >
             GitHub Repo <i className='fab fa-github ml-3'></i>
           </a>

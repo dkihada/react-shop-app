@@ -1,0 +1,8 @@
+.goods-item {
+  position: relative;
+}
+.goods-item__tag {
+  position: absolute;
+  z-index: 10;
+  right: 5%;
+}
