@@ -1,0 +1,9 @@
+.add-item-basket {
+  cursor: pointer;
+  color: lightgreen;
+}
+
+.remove-item-basket {
+  cursor: pointer;
+  color: tomato;
+}

@@ -6,6 +6,8 @@ function BasketList(props) {
     order = [],
     handleBasketShow = Function.prototype,
     removeFromBasket = Function.prototype,
+    addItemToBasket = Function.prototype,
+    removeItemFromBasket = Function.prototype,
   } = props;
 
   const totalPrice = order.reduce((sum, el) => {
@@ -35,11 +37,15 @@ function BasketList(props) {
                 key={item.mainId}
                 {...item}
                 removeFromBasket={removeFromBasket}
+                addItemToBasket={addItemToBasket}
+                removeItemFromBasket={removeItemFromBasket}
               />
             ))
           ) : (
             <tr>
-              <th>Корзина пуста</th>
+              <th style={{ fontSize: '24px', color: 'tomato' }}>
+                Корзина пуста
+              </th>
             </tr>
           )}
         </tbody>
@@ -53,6 +59,9 @@ function BasketList(props) {
           </tr>
         </tfoot>
       </table>
+      <div className='is-flex is-justify-content-end'>
+        <span className='button is-success '>Оформить</span>
+      </div>
     </div>
   );
 }
