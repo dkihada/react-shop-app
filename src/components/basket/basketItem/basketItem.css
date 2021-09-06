@@ -1,9 +1,11 @@
 .add-item-basket {
   cursor: pointer;
   color: lightgreen;
+  user-select: none;
 }
 
 .remove-item-basket {
   cursor: pointer;
   color: tomato;
+  user-select: none;
 }
