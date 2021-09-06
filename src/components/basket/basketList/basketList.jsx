@@ -28,7 +28,9 @@ function BasketList(props) {
           {order.length ? (
             order.map((item) => <BasketItem key={item.mainId} {...item} />)
           ) : (
-            <div>Корзина пуста</div>
+            <tr>
+              <th>Корзина пуста</th>
+            </tr>
           )}
         </tbody>
         <tfoot>
