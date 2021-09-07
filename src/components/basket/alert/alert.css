@@ -1,0 +1,28 @@
+.alert-item {
+  position: fixed;
+  box-sizing: content-box;
+  top: 15%;
+  right: 10%;
+  z-index: 10;
+  animation: fade-in 250ms ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .alert-item {
+    position: fixed;
+    top: 2%;
+    right: 0;
+    animation: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    right: 0%;
+    opacity: 0;
+  }
+  to {
+    right: 10%;
+    opacity: 1;
+  }
+}

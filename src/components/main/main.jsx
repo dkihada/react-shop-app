@@ -5,12 +5,14 @@ import { Preloader } from '../preloader/preloader';
 import { GoodsList } from './goodsList/goodsList';
 import { BasketList } from '../basket/basketList/basketList';
 import './main.css';
+import { Alert } from '../basket/alert/alert';
 
 function Main() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
   const [isBasketShow, setBasketShow] = useState(false);
+  const [alertName, setAlertName] = useState('');
 
   const addToBasket = (item) => {
     const itemIndex = order.findIndex(
@@ -36,6 +38,7 @@ function Main() {
       });
       setOrder(newOrder);
     }
+    setAlertName(item.displayName);
   };
 
   const removeFromBasket = (itemId) => {
@@ -76,6 +79,10 @@ function Main() {
     setBasketShow(!isBasketShow);
   };
 
+  const closeAlert = () => {
+    setAlertName('');
+  };
+
   useEffect(() => {
     fetch(API_URL, {
       headers: {
@@ -106,6 +113,7 @@ function Main() {
           removeItemFromBasket={removeItemFromBasket}
         />
       )}
+      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
     </main>
   );
 }
