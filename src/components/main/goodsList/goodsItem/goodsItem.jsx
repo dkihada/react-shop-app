@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../../../context';
 import './goodsItem.css';
 
 function GoodsItem(props) {
@@ -7,9 +9,10 @@ function GoodsItem(props) {
     displayDescription,
     price,
     displayAssets,
-    addToBasket = Function.prototype,
     banner,
   } = props;
+
+  const { addToBasket } = useContext(ShopContext);
 
   const imgBackground = displayAssets.map((item) => item.full_background);
 
