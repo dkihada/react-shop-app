@@ -75,7 +75,7 @@ export function reducer(state, { type, payload }) {
         ...state,
         isBasketShow: !state.isBasketShow,
       };
-    case 'ClOSE_ALERT':
+    case 'CLOSE_ALERT':
       return {
         ...state,
         alertName: '',

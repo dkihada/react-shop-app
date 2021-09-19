@@ -26,7 +26,7 @@ export const ContextProvider = ({ children }) => {
     dispatch({ type: 'ADD_ITEM_TO_BASKET', payload: { mainId: itemId } });
   };
 
-  value.removeItemToBasket = (itemId) => {
+  value.removeItemFromBasket = (itemId) => {
     dispatch({ type: 'REMOVE_ITEM_TO_BASKET', payload: { mainId: itemId } });
   };
 
