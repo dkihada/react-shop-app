@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { ShopContext } from '../../context';
 import { API_KEY, API_URL } from '../../config';
 import { Basket } from '../basket/basket';
 import { Preloader } from '../preloader/preloader';
@@ -8,53 +9,8 @@ import './main.css';
 import { Alert } from '../basket/alert/alert';
 
 function Main() {
-  const [goods, setGoods] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [order, setOrder] = useState([]);
-  const [isBasketShow, setBasketShow] = useState(false);
-  const [alertName, setAlertName] = useState('');
-
-  const removeFromBasket = (itemId) => {
-    setOrder(order.filter((el) => el.mainId !== itemId));
-  };
-
-  const addItemToBasket = (itemId) => {
-    const newOrder = order.map((item) => {
-      if (item.mainId === itemId) {
-        const newQuantity = item.quantity + 1;
-        return {
-          ...item,
-          quantity: newQuantity,
-        };
-      } else {
-        return item;
-      }
-    });
-    setOrder(newOrder);
-  };
-
-  const removeItemFromBasket = (itemId) => {
-    const newOrder = order.map((item) => {
-      if (item.mainId === itemId) {
-        const newQuantity = item.quantity - 1;
-        return {
-          ...item,
-          quantity: newQuantity >= 0 ? newQuantity : 0,
-        };
-      } else {
-        return item;
-      }
-    });
-    setOrder(newOrder);
-  };
-
-  const handleBasketShow = () => {
-    setBasketShow(!isBasketShow);
-  };
-
-  const closeAlert = () => {
-    setAlertName('');
-  };
+  const { setGoods, loading, order, isBasketShow, alertName } =
+    useContext(ShopContext);
 
   useEffect(() => {
     fetch(API_URL, {
@@ -64,25 +20,17 @@ function Main() {
     })
       .then((response) => response.json())
       .then((data) => {
-        data.shop && setGoods(data.shop);
-        setLoading(false);
+        setGoods(data.shop);
       });
-  }, [order]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className='container content'>
-      <Basket quantity={order.length} handleBasketShow={handleBasketShow} />
-      {loading ? <Preloader /> : <GoodsList goods={goods} />}
-      {isBasketShow && (
-        <BasketList
-          order={order}
-          handleBasketShow={handleBasketShow}
-          removeFromBasket={removeFromBasket}
-          addItemToBasket={addItemToBasket}
-          removeItemFromBasket={removeItemFromBasket}
-        />
-      )}
-      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
+      <Basket quantity={order.length} />
+      {loading ? <Preloader /> : <GoodsList />}
+      {isBasketShow && <BasketList />}
+      {alertName && <Alert />}
     </main>
   );
 }

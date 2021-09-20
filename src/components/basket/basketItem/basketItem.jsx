@@ -1,15 +1,12 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../../context';
 import './basketItem.css';
 
 function BasketItem(props) {
-  const {
-    mainId,
-    displayName,
-    price,
-    quantity,
-    removeFromBasket = Function.prototype,
-    addItemToBasket = Function.prototype,
-    removeItemFromBasket = Function.prototype,
-  } = props;
+  const { mainId, displayName, price, quantity } = props;
+
+  const { removeFromBasket, addItemToBasket, removeItemFromBasket } =
+    useContext(ShopContext);
 
   return (
     <tr>

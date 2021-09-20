@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../context';
 import './basket.css';
 
-function Basket(props) {
-  const { quantity, handleBasketShow = Function.prototype } = props;
+function Basket() {
+  const { order, handleBasketShow = Function.prototype } =
+    useContext(ShopContext);
+
+  const quantity = order.length;
 
   return (
     <div className='basket' onClick={handleBasketShow}>
